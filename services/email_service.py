@@ -23,4 +23,3 @@ def send_mail(name: str, title: str, recipients: list):
     msg.attach_alternative(html_contet, 'text/html')
 
     msg.send()
-

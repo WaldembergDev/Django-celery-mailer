@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account',
-    'plataform'
+    'plataform',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -148,3 +149,13 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST = config('EMAIL_HOST')
+
+# CELERY
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+
+# definindo como virão os dados
+accept_content = ['json']
+task_serializer = 'json'
+
+# configurando para salvar as informações no banco de dados
+CELERY_RESULT_BACKEND = 'django-db'

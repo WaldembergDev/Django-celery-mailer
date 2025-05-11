@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import GuestUser
 from django.contrib import messages
 from django.contrib.messages import constants
+from .task import task_mail
 
 # Create your views here.
 def registration(request):
@@ -25,4 +26,6 @@ def registration(request):
         # adicionando uma mensagem ao django message
         messages.add_message(request, constants.SUCCESS, 'Registro realizado com sucesso!')
         # redirecionando para a mesma página com a mensagem de feedback
+        # enviando e-mail para o usuário cadastrado
+        task_mail.delay(name, 'Confirmação de Cadastro', [email])
         return redirect('/account/registration')
