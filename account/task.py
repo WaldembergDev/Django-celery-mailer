@@ -4,5 +4,4 @@ from time import sleep
 
 @shared_task
 def task_mail(name, title, recipients):
-    sleep(10)
     send_mail(name=name, title=title, recipients=recipients)
